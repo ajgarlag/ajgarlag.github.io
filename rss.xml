@@ -33,7 +33,7 @@
 <p>Remember that you must register the extension within the twig environment with</p>
 
 <pre><code class="php">/* @var $twig Twig_Environment */
-$twig-&gt;addExtension(new Ajgl\Twig\Extension\Breakpoint());
+$twig-&gt;addExtension(new Ajgl\Twig\Extension\BreakpointExtension());
 </code></pre>
 
 <p>If you are writing a Symfony Application, you can use the provided bundle (included with the package) which will register the extension automatically:</p>
