@@ -566,25 +566,5 @@ var tree = new dijit.Tree({model: model}, "treeDivId");
                 <pubDate>Thu, 17 Sep 2009 16:34:53 +0000</pubDate>
                 <guid>https://aj.garcialagar.es/blog/2009/09/17/no-comment</guid>
             </item>
-                                            <item>
-                <title>Acerca de</title>
-                <description><![CDATA[<h2>Content moved:</h2>
-<p>
-    The content has been moved to <a href=""></a>. Please, update your bookmarks.
-</p>]]></description>
-                <link>https://aj.garcialagar.es/blog/2009/09/17/acerca-de</link>
-                <pubDate>Thu, 17 Sep 2009 00:00:00 +0000</pubDate>
-                <guid>https://aj.garcialagar.es/blog/2009/09/17/acerca-de</guid>
-            </item>
-                                            <item>
-                <title>About</title>
-                <description><![CDATA[<h2>Content moved:</h2>
-<p>
-    The content has been moved to <a href=""></a>. Please, update your bookmarks.
-</p>]]></description>
-                <link>https://aj.garcialagar.es/blog/2009/09/17/about</link>
-                <pubDate>Thu, 17 Sep 2009 00:00:00 +0000</pubDate>
-                <guid>https://aj.garcialagar.es/blog/2009/09/17/about</guid>
-            </item>
-                                                                                                                            </channel>
+                                                                                                        </channel>
 </rss>
