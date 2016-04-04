@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="generator" content="Spress v2.1.0">
+        <link rel="home" type="application/rss+xml" href="https://aj.garcialagar.es/rss.xml" />
+
+    <title>What is wrong with CSV in PHP | Yet Another Boring Web - Antonio J. García Lagar</title>
+
+    <link rel="canonical" href="https://aj.garcialagar.es/blog/2016/04/04/what-is-wrong-with-csv-in-php">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://aj.garcialagar.es/assets/css/ajgl.min.css">
+
+    <!-- Highlight js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/9.2.0/styles/solarized-dark.min.css">
+
+    <!-- Custom Fonts -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Favicon by http://www.favicomatic.com/ -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="https://aj.garcialagar.es/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://aj.garcialagar.es/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://aj.garcialagar.es/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://aj.garcialagar.es/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="https://aj.garcialagar.es/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="https://aj.garcialagar.es/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="https://aj.garcialagar.es/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://aj.garcialagar.es/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="https://aj.garcialagar.es/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="https://aj.garcialagar.es/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="https://aj.garcialagar.es/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="https://aj.garcialagar.es/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="https://aj.garcialagar.es/favicon-128.png" sizes="128x128" />
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://aj.garcialagar.es/">Yet Another Boring Web</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="https://aj.garcialagar.es/">Home</a>
+                </li>
+                                <li>
+                    <a href="https://aj.garcialagar.es/acerca-de/">Acerca de</a>
+                </li>
+                                <li>
+                    <a href="https://aj.garcialagar.es/about/">About</a>
+                </li>
+                            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    
+<!-- Post Header -->
+<header class="intro-header" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('https://aj.garcialagar.es/assets/img/2016-04-04-what-is-wrong-with-csv-in-php/header.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>What is wrong with CSV in PHP</h1>
+                                        <span class="meta">Posted by ajgarlag on April 4th 2016, at 6:11pm</span>
+                                        <br>
+                    <span class="meta pull-right"><i class="fa fa-camera"></i> by
+                                                <a href="https://commons.wikimedia.org/wiki/File:Abramowitz%26Stegun.page97.agr.jpg">Arnold Reinhold</a>
+                                            </span>
+                                                            <br>
+                    <span class="meta pull-right"><i class="fa fa-tags"></i>
+                                                                                <a href="/tags/en">en</a>,                                                         <a href="/tags/csv">csv</a>,                                                         <a href="/tags/php">php</a>                                                                        </span>
+                                    </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+				<p>The PHP implementation of CSV functions has some little gotchas related to the escape character that can lead you to unexpected results if you exchange CSV data with applications not written in PHP.</p>
+
+<h2>RFC 4180: Common Format and MIME Type for Comma-Separated Values (CSV) Files</h2>
+
+<p>To illustrate the issue, I've created a simple <a href="https://goo.gl/j50MKc">Google Spreadsheet</a> document with a single field filled with the following text <code>"Hello\", World!</code>.</p>
+
+<p>If you <a href="https://goo.gl/H4ni63">download</a> it as CSV, the Google servers will generate a file that adheres to the <a href="https://www.ietf.org/rfc/rfc4180.txt">RFC 4180</a> Common Format and MIME Type for Comma-Separated Values (CSV) Files.</p>
+
+<p>Now, to read it with the PHP <a href="http://php.net/manual/en/function.fgetcsv.php"><code>fgetcsv</code></a> function, we must use a double-quote (<code>“</code>) as the escape character because the RFC states that:</p>
+
+<blockquote>
+  <p>If double-quotes are used to enclose fields, then a double-quote appearing inside a field must be escaped by preceding it with another double quote.</p>
+</blockquote>
+
+<p>So let's try this code snippet:</p>
+
+<pre><code class="php">&lt;?php
+$fp = fopen('https://goo.gl/H4ni63', 'r');
+echo fgets($fp, 4096).PHP_EOL;
+$fp = fopen('https://goo.gl/H4ni63', 'r');
+echo fgetcsv($fp, 0, ',', '"', '"')[0].PHP_EOL;
+</code></pre>
+
+<p>Output:</p>
+
+<pre><code class="bash">"""Hello\"", World!"
+"Hello\", World!
+</code></pre>
+
+<p>The first line is the raw content of the CSV file; and the second one, the parsed data, so everything works as expected.</p>
+
+<h2>The problem: Trying to write standard CSV files with PHP</h2>
+
+<p>Now, let's make the opposite operation, to write the extracted data back to CSV format. Remember that we must use a double-quote as escape character, but here comes the first problem. The <code>$escape_char</code> parameter in <a href="http://php.net/manual/en/function.fputcsv.php"><code>fputcsv</code></a> was added in PHP 5.5.4, so we have two options:</p>
+
+<h3>PHP &lt;5.5.4</h3>
+
+<pre><code class="php">&lt;?php
+$fp = tmpfile();
+fputcsv($fp, array('"Hello\", World!'), ',', '"');
+rewind($fp);
+echo fgets($fp, 4096);
+rewind($fp);
+$row = fgetcsv($fp, 0, ',', '"', '"');
+echo $row[0].PHP_EOL;
+echo $row[1].PHP_EOL;
+</code></pre>
+
+<p>Output:</p>
+
+<pre><code>"""Hello\", World!"
+"Hello\
+ World!"
+</code></pre>
+
+<p>You can see that the first double-quote is escaped with a double-quote, but the second one is escaped with a backslash (<code>\</code>), and reading it back will generate a row with two fields. WTF!</p>
+
+<h3>PHP >=5.5.4</h3>
+
+<pre><code class="php">&lt;?php
+$fp = tmpfile();
+fputcsv($fp, array('"Hello\", World!'), ',', '"', '"');
+rewind($fp);
+echo fgets($fp, 4096);
+rewind($fp);
+$row = fgetcsv($fp, 0, ',', '"', '"');
+echo $row[0].PHP_EOL;
+echo $row[1].PHP_EOL;
+</code></pre>
+
+<p>Output:</p>
+
+<pre><code>""Hello\", World!"
+Hello\"
+ World!"
+</code></pre>
+
+<p>The result is even worse, the second double-quote is escaped again with a backslash (<code>\</code>), but the first one is not escaped at all, and reading it back will generate a row with two fields again. WTF<sup>2</sup>!</p>
+
+<p>This problem is a known issue, reported in the <a href="https://bugs.php.net/bug.php?id=50686">50686</a> PHP bug, that is marked as <em>Wont fix</em> by the language developers.</p>
+
+<h2>My proposed solution: Writing standard CSV files with AjglCsvRfc</h2>
+
+<p>As I needed a workaround for it, I’ve written a small PHP library that provides an alternative implementation for all CSV related functions to write CSV files that can be safely exchanged with applications written in other programming languages.</p>
+
+<table>
+<thead>
+<tr>
+  <th>Native</th>
+  <th>Alternative</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>fgetcsv</code></td>
+  <td><code>Ajgl\Csv\Rfc\fgetcsv</code></td>
+</tr>
+<tr>
+  <td><code>fputcsv</code></td>
+  <td><code>Ajgl\Csv\Rfc\fputcsv</code></td>
+</tr>
+<tr>
+  <td><code>str_getcsv</code></td>
+  <td><code>Ajgl\Csv\Rfc\str_getcsv</code></td>
+</tr>
+<tr>
+  <td><code>SplFileObject::fgetcsv</code></td>
+  <td><code>Ajgl\Csv\Rfc\Spl\SplFileObject::fgetcsv</code></td>
+</tr>
+<tr>
+  <td><code>SplFileObject::fputcsv</code></td>
+  <td><code>Ajgl\Csv\Rfc\Spl\SplFileObject::fputcsv</code></td>
+</tr>
+<tr>
+  <td><code>SplFileObject::setCsvControl</code></td>
+  <td><code>Ajgl\Csv\Rfc\Spl\SplFileObject::setCsvControl</code></td>
+</tr>
+</tbody>
+</table>
+
+<p>You can install this library with composer:</p>
+
+<pre><code class="bash">$ composer require ajgl/csv-rfc
+</code></pre>
+
+<p>Now the following code snippet will finally print a well escaped CSV string where both double-quote charaters are successfully escaped following the RFC statement, and when read it back will generate a row with a single field:</p>
+
+<pre><code class="php">&lt;?php
+require __DIR__.'/vendor/autoload.php';
+use Ajgl\Csv\Rfc;
+$fp = tmpfile();
+Rfc\fputcsv($fp, array('"Hello\", World!'), ',', '"');
+rewind($fp);
+echo fgets($fp, 4096);
+rewind($fp);
+$row = Rfc\fgetcsv($fp, 0, ',', '"', '"');
+echo $row[0].PHP_EOL;
+</code></pre>
+
+<p>Output:</p>
+
+<pre><code>"""Hello\"", World!"
+"Hello\", World!
+</code></pre>
+
+<p>I recommend you to read the README file, and to pay attention to the <a href="https://github.com/ajgarlag/AjglCsvRfc#end-of-line-eol">End-Of-Line</a> section.</p>
+
+<p>If you find this library useful, please drop a ★ in the <a href="https://github.com/ajgarlag/AjglCsvRfc">GitHub repository page</a> and/or the <a href="https://packagist.org/packages/ajgl/csv-rfc">Packagist package page</a>.</p>
+
+
+                <p class="text-right">
+                    Any typo or problem?
+                    <a href="https://github.com/ajgarlag/aj.garcialagar.es/edit/master/src/content/posts/2016-04-04-what-is-wrong-with-csv-in-php.md">
+                         Edit this page on Github <i class="fa fa-github"></i>
+                    </a>
+                </p>
+
+                <hr>
+
+                                <section>
+                    <h3>Comments</h3>
+                    <div id="disqus_thread">
+                                            </div>
+                    <noscript>
+                        Please enable JavaScript to view the
+                        <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+                    </noscript>
+                    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+                </section>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+<hr>
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    <li>
+                        <a href="https://aj.garcialagar.es/rss.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                                        <li>
+                        <a href="https://twitter.com/ajgarlag">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                                                                                <li>
+                        <a href="https://github.com/ajgarlag">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                                                                                                                        <li>
+                        <a href="mailto:aj@garcialagar.es">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                                    </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; <a href="https://aj.garcialagar.es/">Antonio J. García Lagar</a> 2016.
+                    Powered by <a href="http://spress.yosymfony.com/">Spress</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-1.12.1.min.js" integrity="sha256-I1nTg78tSrZev3kjvfdM5A5Ak/blglGzlaZANLPDl3I=" crossorigin="anonymous"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="https://aj.garcialagar.es/assets/js/ajgl.min.js"></script>
+
+<!-- Highlight JS -->
+<script src="https://cdn.jsdelivr.net/highlight.js/9.2.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-10547802-1', 'aj.garcialagar.es');
+    ga('send', 'pageview');
+</script>
+
+                <script type="text/javascript">
+            var disqus_shortname = 'ajgarcialagares';
+
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        
+</body>
+
+</html>

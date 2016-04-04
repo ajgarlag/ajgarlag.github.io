@@ -6,6 +6,161 @@
         <description>RSS feed for Yet Another Boring Web</description>
         <atom:link href="https://aj.garcialagar.es/rss.xml" rel="self" type="application/rss+xml" />
                     <item>
+                <title>What is wrong with CSV in PHP</title>
+                <description><![CDATA[<p>The PHP implementation of CSV functions has some little gotchas related to the escape character that can lead you to unexpected results if you exchange CSV data with applications not written in PHP.</p>
+
+<h2>RFC 4180: Common Format and MIME Type for Comma-Separated Values (CSV) Files</h2>
+
+<p>To illustrate the issue, I've created a simple <a href="https://goo.gl/j50MKc">Google Spreadsheet</a> document with a single field filled with the following text <code>"Hello\", World!</code>.</p>
+
+<p>If you <a href="https://goo.gl/H4ni63">download</a> it as CSV, the Google servers will generate a file that adheres to the <a href="https://www.ietf.org/rfc/rfc4180.txt">RFC 4180</a> Common Format and MIME Type for Comma-Separated Values (CSV) Files.</p>
+
+<p>Now, to read it with the PHP <a href="http://php.net/manual/en/function.fgetcsv.php"><code>fgetcsv</code></a> function, we must use a double-quote (<code>“</code>) as the escape character because the RFC states that:</p>
+
+<blockquote>
+  <p>If double-quotes are used to enclose fields, then a double-quote appearing inside a field must be escaped by preceding it with another double quote.</p>
+</blockquote>
+
+<p>So let's try this code snippet:</p>
+
+<pre><code class="php">&lt;?php
+$fp = fopen('https://goo.gl/H4ni63', 'r');
+echo fgets($fp, 4096).PHP_EOL;
+$fp = fopen('https://goo.gl/H4ni63', 'r');
+echo fgetcsv($fp, 0, ',', '"', '"')[0].PHP_EOL;
+</code></pre>
+
+<p>Output:</p>
+
+<pre><code class="bash">"""Hello\"", World!"
+"Hello\", World!
+</code></pre>
+
+<p>The first line is the raw content of the CSV file; and the second one, the parsed data, so everything works as expected.</p>
+
+<h2>The problem: Trying to write standard CSV files with PHP</h2>
+
+<p>Now, let's make the opposite operation, to write the extracted data back to CSV format. Remember that we must use a double-quote as escape character, but here comes the first problem. The <code>$escape_char</code> parameter in <a href="http://php.net/manual/en/function.fputcsv.php"><code>fputcsv</code></a> was added in PHP 5.5.4, so we have two options:</p>
+
+<h3>PHP &lt;5.5.4</h3>
+
+<pre><code class="php">&lt;?php
+$fp = tmpfile();
+fputcsv($fp, array('"Hello\", World!'), ',', '"');
+rewind($fp);
+echo fgets($fp, 4096);
+rewind($fp);
+$row = fgetcsv($fp, 0, ',', '"', '"');
+echo $row[0].PHP_EOL;
+echo $row[1].PHP_EOL;
+</code></pre>
+
+<p>Output:</p>
+
+<pre><code>"""Hello\", World!"
+"Hello\
+ World!"
+</code></pre>
+
+<p>You can see that the first double-quote is escaped with a double-quote, but the second one is escaped with a backslash (<code>\</code>), and reading it back will generate a row with two fields. WTF!</p>
+
+<h3>PHP >=5.5.4</h3>
+
+<pre><code class="php">&lt;?php
+$fp = tmpfile();
+fputcsv($fp, array('"Hello\", World!'), ',', '"', '"');
+rewind($fp);
+echo fgets($fp, 4096);
+rewind($fp);
+$row = fgetcsv($fp, 0, ',', '"', '"');
+echo $row[0].PHP_EOL;
+echo $row[1].PHP_EOL;
+</code></pre>
+
+<p>Output:</p>
+
+<pre><code>""Hello\", World!"
+Hello\"
+ World!"
+</code></pre>
+
+<p>The result is even worse, the second double-quote is escaped again with a backslash (<code>\</code>), but the first one is not escaped at all, and reading it back will generate a row with two fields again. WTF<sup>2</sup>!</p>
+
+<p>This problem is a known issue, reported in the <a href="https://bugs.php.net/bug.php?id=50686">50686</a> PHP bug, that is marked as <em>Wont fix</em> by the language developers.</p>
+
+<h2>My proposed solution: Writing standard CSV files with AjglCsvRfc</h2>
+
+<p>As I needed a workaround for it, I’ve written a small PHP library that provides an alternative implementation for all CSV related functions to write CSV files that can be safely exchanged with applications written in other programming languages.</p>
+
+<table>
+<thead>
+<tr>
+  <th>Native</th>
+  <th>Alternative</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>fgetcsv</code></td>
+  <td><code>Ajgl\Csv\Rfc\fgetcsv</code></td>
+</tr>
+<tr>
+  <td><code>fputcsv</code></td>
+  <td><code>Ajgl\Csv\Rfc\fputcsv</code></td>
+</tr>
+<tr>
+  <td><code>str_getcsv</code></td>
+  <td><code>Ajgl\Csv\Rfc\str_getcsv</code></td>
+</tr>
+<tr>
+  <td><code>SplFileObject::fgetcsv</code></td>
+  <td><code>Ajgl\Csv\Rfc\Spl\SplFileObject::fgetcsv</code></td>
+</tr>
+<tr>
+  <td><code>SplFileObject::fputcsv</code></td>
+  <td><code>Ajgl\Csv\Rfc\Spl\SplFileObject::fputcsv</code></td>
+</tr>
+<tr>
+  <td><code>SplFileObject::setCsvControl</code></td>
+  <td><code>Ajgl\Csv\Rfc\Spl\SplFileObject::setCsvControl</code></td>
+</tr>
+</tbody>
+</table>
+
+<p>You can install this library with composer:</p>
+
+<pre><code class="bash">$ composer require ajgl/csv-rfc
+</code></pre>
+
+<p>Now the following code snippet will finally print a well escaped CSV string where both double-quote charaters are successfully escaped following the RFC statement, and when read it back will generate a row with a single field:</p>
+
+<pre><code class="php">&lt;?php
+require __DIR__.'/vendor/autoload.php';
+use Ajgl\Csv\Rfc;
+$fp = tmpfile();
+Rfc\fputcsv($fp, array('"Hello\", World!'), ',', '"');
+rewind($fp);
+echo fgets($fp, 4096);
+rewind($fp);
+$row = Rfc\fgetcsv($fp, 0, ',', '"', '"');
+echo $row[0].PHP_EOL;
+</code></pre>
+
+<p>Output:</p>
+
+<pre><code>"""Hello\"", World!"
+"Hello\", World!
+</code></pre>
+
+<p>I recommend you to read the README file, and to pay attention to the <a href="https://github.com/ajgarlag/AjglCsvRfc#end-of-line-eol">End-Of-Line</a> section.</p>
+
+<p>If you find this library useful, please drop a ★ in the <a href="https://github.com/ajgarlag/AjglCsvRfc">GitHub repository page</a> and/or the <a href="https://packagist.org/packages/ajgl/csv-rfc">Packagist package page</a>.</p>
+]]></description>
+                <link>https://aj.garcialagar.es/blog/2016/04/04/what-is-wrong-with-csv-in-php</link>
+                <pubDate>Mon, 04 Apr 2016 18:11:23 +0000</pubDate>
+                <guid>https://aj.garcialagar.es/blog/2016/04/04/what-is-wrong-with-csv-in-php</guid>
+            </item>
+                    <item>
                 <title>How to set breakpoints in Twig</title>
                 <description><![CDATA[<p>After last <a href="http://phpmad.org" title="PHP Madrid User Group">PHPMad</a> meetup, I was talking with other two group members about our daily work with the <a href="http://www.symfony.com">Syfmony</a> framework and the Symfony Ecosystem. One of them told me that he loves Twig but sometimes he would like to set a breakpoint in a <a href="http://twig.sensiolabs.org">Twig</a> template to debug generated code and the variables passed to the template.</p>
 
