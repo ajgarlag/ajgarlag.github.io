@@ -11,11 +11,11 @@
         <link rel="home" type="application/rss+xml" href="https://aj.garcialagar.es/rss.xml" />
         <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@ajgarlag" />
-    <meta name="twitter:title" content="Debugging Symfony with XDebug" />
+    <meta name="twitter:title" content="Debugging Symfony with Xdebug" />
     <meta name="twitter:description" content="How to set breakpoint in your Symfony apps avoiding the class cache when a running Xdebug session is detected." />
     <meta name="twitter:image" content="https://aj.garcialagar.es/assets/img/2013-11-15-debugging-symfony-with-xdebug-2/header.jpg" />
     
-    <title>Debugging Symfony with XDebug | Yet Another Boring Web - Antonio J. García Lagar</title>
+    <title>Debugging Symfony with Xdebug | Yet Another Boring Web - Antonio J. García Lagar</title>
 
     <link rel="canonical" href="https://aj.garcialagar.es/blog/2013/11/15/debugging-symfony-with-xdebug">
 
@@ -107,7 +107,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
-                    <h1>Debugging Symfony with XDebug</h1>
+                    <h1>Debugging Symfony with Xdebug</h1>
                                         <span class="meta">Posted by ajgarlag on November 15th 2013, at 8:54pm</span>
                                         <br>
                     <span class="meta pull-right"><i class="fa fa-camera"></i> by
@@ -128,17 +128,17 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
-				<p>Some months ago, I wrote a post in Spanish about debugging Symfony apps with XDebug with the hope that I would translate it to English soon. Well, not as soon as I wished,but here is it.</p>
+				<p>Some months ago, I wrote a post in Spanish about debugging Symfony apps with Xdebug with the hope that I would translate it to English soon. Well, not as soon as I wished,but here is it.</p>
 
-<p>Whe I started to work with the Symfony standard distribution, 18 months ago (I used to work with Zend Framework 1 before), I didn’t understand the event controlled execution flow (beside other dark magics inside the framework), so the first thing I tried was to debug a full request with the help of XDebug.</p>
+<p>Whe I started to work with the Symfony standard distribution, 18 months ago (I used to work with Zend Framework 1 before), I didn’t understand the event controlled execution flow (beside other dark magics inside the framework), so the first thing I tried was to debug a full request with the help of Xdebug.</p>
 
 <p>The problem was that, although I set the breakpoints in every interesting line of code, these breakpoints were completely ignored. The reason, easy to understand now than I know it, was that the files with the breakpoints were never executed. They were being cached to another location to accelerate the framework and this location was hidden for mi IDE.</p>
 
-<p>To simplify my debugging work of the hidden corners of the framework, without the need of setting breakpoints it those cache files, the solution was to skip the cache files with a comment to the <strong>$kernel->loadClassCache();</strong> inside the <strong>web/app_dev.php</strong> file. But I wanted to avoid the cache only when the XDebug session was running, so I wrote a little conditional expression to detect it.</p>
+<p>To simplify my debugging work of the hidden corners of the framework, without the need of setting breakpoints it those cache files, the solution was to skip the cache files with a comment to the <strong>$kernel->loadClassCache();</strong> inside the <strong>web/app_dev.php</strong> file. But I wanted to avoid the cache only when the Xdebug session was running, so I wrote a little conditional expression to detect it.</p>
 
 <p>Here is the snippet that helped me a lot to understand how Symfony works:</p>
 
-<pre><code class="php">//This check tries to detect a XDebug session to prevent the load of class cache
+<pre><code class="php">//This check tries to detect a Xdebug session to prevent the load of class cache
 if (
     !extension_loaded('xdebug') ||
     (
