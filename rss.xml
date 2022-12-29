@@ -3,9 +3,8 @@
     <channel>
         <title>Yet Another Boring Web</title>
         <link>https://aj.garcialagar.es</link>
-        <description>RSS feed for Yet Another Boring Web</description>
-        <atom:link href="https://aj.garcialagar.es/rss.xml" rel="self" type="application/rss+xml" />
-                    <item>
+        <description>RSS feed forYet Another Boring Web</description>
+        <atom:link href="https://aj.garcialagar.es/rss.xml" rel="self" type="application/rss+xml" />            <item>
                 <title>What is wrong with CSV in PHP</title>
                 <description><![CDATA[<p>The PHP implementation of CSV functions has some little gotchas related to the escape character that can lead you to unexpected results if you exchange CSV data with applications not written in PHP.</p>
 
@@ -159,8 +158,7 @@ echo $row[0].PHP_EOL;
                 <link>https://aj.garcialagar.es/blog/2016/04/04/what-is-wrong-with-csv-in-php</link>
                 <pubDate>Mon, 04 Apr 2016 18:11:23 +0000</pubDate>
                 <guid>https://aj.garcialagar.es/blog/2016/04/04/what-is-wrong-with-csv-in-php</guid>
-            </item>
-                    <item>
+            </item>            <item>
                 <title>How to set breakpoints in Twig</title>
                 <description><![CDATA[<p>After last <a href="http://phpmad.org" title="PHP Madrid User Group">PHPMad</a> meetup, I was talking with other two group members about our daily work with the <a href="http://www.symfony.com">Syfmony</a> framework and the Symfony Ecosystem. One of them told me that he loves Twig but sometimes he would like to set a breakpoint in a <a href="http://twig.sensiolabs.org">Twig</a> template to debug generated code and the variables passed to the template.</p>
 
@@ -179,8 +177,7 @@ echo $row[0].PHP_EOL;
     &lt;meta charset="utf-8"&gt;
     &lt;title&gt;title&lt;/title&gt;
   &lt;/head&gt;
-  &lt;body&gt;
-    {{ breakpoint() }}
+  &lt;body&gt;{{ breakpoint()}}
   &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
@@ -208,8 +205,7 @@ if (in_array($this-&gt;getEnvironment(), array('dev', 'test'), true)) {
                 <link>https://aj.garcialagar.es/blog/2013/12/03/how-to-set-breakpoints-in-twig</link>
                 <pubDate>Tue, 03 Dec 2013 09:30:25 +0000</pubDate>
                 <guid>https://aj.garcialagar.es/blog/2013/12/03/how-to-set-breakpoints-in-twig</guid>
-            </item>
-                    <item>
+            </item>            <item>
                 <title>Debugging Symfony with Xdebug</title>
                 <description><![CDATA[<p>Some months ago, I wrote a post in Spanish about debugging Symfony apps with Xdebug with the hope that I would translate it to English soon. Well, not as soon as I wished,but here is it.</p>
 
@@ -237,8 +233,7 @@ if (
                 <link>https://aj.garcialagar.es/blog/2013/11/15/debugging-symfony-with-xdebug</link>
                 <pubDate>Fri, 15 Nov 2013 20:54:12 +0000</pubDate>
                 <guid>https://aj.garcialagar.es/blog/2013/11/15/debugging-symfony-with-xdebug</guid>
-            </item>
-                    <item>
+            </item>            <item>
                 <title>Debug de Symfony con Xdebug</title>
                 <description><![CDATA[<p>Hace algunas semanas asistí en <a href="http://twitter.com/search?q=%23desymfony">#desymfony</a>  2013, la <a href="http://desymfony.com">conferencia española de Symfony</a>, a una charla de <a href="http://twitter.com/carlos_granados">@carlos_granados</a> titulada &#8220;<a href="http://es.slideshare.net/carlosgranados/por-que-symfony2-es-tan-rpido"><em>Por qué Symfony2 es tan rápido</em></a>&#8221; en la que Carlos nos explicó algunos de los mecanismos internos utilizados por Symfony para acelerar la respuesta a las peticiones HTTP.</p>
 
@@ -268,8 +263,7 @@ if (
                 <link>https://aj.garcialagar.es/blog/2013/07/12/debug-de-symfony-con-xdebug</link>
                 <pubDate>Fri, 12 Jul 2013 20:41:50 +0000</pubDate>
                 <guid>https://aj.garcialagar.es/blog/2013/07/12/debug-de-symfony-con-xdebug</guid>
-            </item>
-                    <item>
+            </item>            <item>
                 <title>Reboot complete</title>
                 <description><![CDATA[<pre><code class="bash">e2fsck 1.42.5 (29-Jul-2012)
 /dev/sda1: clean, 218999/7397376 files, 12969219/29578240 blocks
@@ -282,8 +276,7 @@ if (
                 <link>https://aj.garcialagar.es/blog/2013/07/04/reboot-complete</link>
                 <pubDate>Thu, 04 Jul 2013 17:59:04 +0000</pubDate>
                 <guid>https://aj.garcialagar.es/blog/2013/07/04/reboot-complete</guid>
-            </item>
-                    <item>
+            </item>            <item>
                 <title>Reboot</title>
                 <description><![CDATA[<p>More than one year ago I wrote my last post, now I'm here again trying to reboot the blog.</p>
 
@@ -296,8 +289,7 @@ if (
                 <link>https://aj.garcialagar.es/blog/2012/06/21/reboot</link>
                 <pubDate>Thu, 21 Jun 2012 20:27:35 +0000</pubDate>
                 <guid>https://aj.garcialagar.es/blog/2012/06/21/reboot</guid>
-            </item>
-                    <item>
+            </item>            <item>
                 <title>Mi manifiesto</title>
                 <description><![CDATA[<p>Creo que el movimiento social que está teniendo lugar en España durante estos días protagonizado por una multitud de personas con intereses, ideario y opiniones diversas es lo mejor que le ha sucedido a la sociedad española en muchos años de democracia.</p>
 
@@ -322,8 +314,7 @@ if (
                 <link>https://aj.garcialagar.es/blog/2011/05/20/mi-manifiesto</link>
                 <pubDate>Fri, 20 May 2011 20:05:50 +0000</pubDate>
                 <guid>https://aj.garcialagar.es/blog/2011/05/20/mi-manifiesto</guid>
-            </item>
-                    <item>
+            </item>            <item>
                 <title>Winner</title>
                 <description><![CDATA[<p>AJ 1 &#8211; PFC 0</p>
 
@@ -332,8 +323,7 @@ if (
                 <link>https://aj.garcialagar.es/blog/2011/04/01/winner</link>
                 <pubDate>Fri, 01 Apr 2011 13:47:35 +0000</pubDate>
                 <guid>https://aj.garcialagar.es/blog/2011/04/01/winner</guid>
-            </item>
-                    <item>
+            </item>            <item>
                 <title>La alternativa a la #leysinde</title>
                 <description><![CDATA[<p>Como ciudadano y usuario de internet, vengo siguiendo con sumo interés todo lo relacionado con la mal llamada <a href="http://twitter.com/search?q=%23leysinde">#leysinde</a>; pensando si escribir algo a respecto, pero nunca lo hago por dos razones:</p>
 
@@ -393,8 +383,7 @@ if (
                 <link>https://aj.garcialagar.es/blog/2011/01/12/la-alternativa-a-la-leysinde</link>
                 <pubDate>Wed, 12 Jan 2011 12:10:54 +0000</pubDate>
                 <guid>https://aj.garcialagar.es/blog/2011/01/12/la-alternativa-a-la-leysinde</guid>
-            </item>
-                    <item>
+            </item>            <item>
                 <title>From lenny to squeeze.</title>
                 <description><![CDATA[<p>I'm back again and I'm here to stay (that's my hope).</p>
 
@@ -409,8 +398,7 @@ if (
                 <link>https://aj.garcialagar.es/blog/2010/12/18/from-lenny-to-squeeze</link>
                 <pubDate>Sat, 18 Dec 2010 09:39:14 +0000</pubDate>
                 <guid>https://aj.garcialagar.es/blog/2010/12/18/from-lenny-to-squeeze</guid>
-            </item>
-                    <item>
+            </item>            <item>
                 <title>Back to blog</title>
                 <description><![CDATA[<p>Long time since my last post, but as you can see at the @NET block at the sidebar, I'm still alive.</p>
 
@@ -425,8 +413,7 @@ if (
                 <link>https://aj.garcialagar.es/blog/2010/08/06/back-to-blog</link>
                 <pubDate>Fri, 06 Aug 2010 11:18:31 +0000</pubDate>
                 <guid>https://aj.garcialagar.es/blog/2010/08/06/back-to-blog</guid>
-            </item>
-                    <item>
+            </item>            <item>
                 <title>Virtualization with KVM and Debian Lenny</title>
                 <description><![CDATA[<p>Some weeks ago I've started to work with virtualized machines, and as an old Linux user, I've choosen <a href="http://www.linux-kvm.org" target="_blank">KVM</a> as virtualization infrastructure. KVM is part of the Linux kernel since the 2.6.20 version and <a href="http://www.debian.org" target="_blank">Debian</a> <a href="www.debian.org/releases/lenny/" target="_blank">Lenny 5.0</a> was released with the 2.6.26 kernel version. But in order to work with KVM we need a CPU processor with virtualization support, so the first step is to check if our CPU has it. You have to execute:</p>
 
@@ -484,8 +471,7 @@ aptitude update
                 <link>https://aj.garcialagar.es/blog/2010/01/17/virtualization-with-kvm-and-debian-lenny</link>
                 <pubDate>Sun, 17 Jan 2010 14:04:00 +0000</pubDate>
                 <guid>https://aj.garcialagar.es/blog/2010/01/17/virtualization-with-kvm-and-debian-lenny</guid>
-            </item>
-                    <item>
+            </item>            <item>
                 <title>Manifiesto &#8220;En defensa de los derechos fundamentales en internet&#8221;</title>
                 <description><![CDATA[<p>Ante la inclusión en el Anteproyecto de Ley de Economía sostenible de modificaciones legislativas que afectan al libre ejercicio de las libertades de expresión, información y el derecho de acceso a la cultura a través de Internet, los periodistas, <em>bloggers</em>, usuarios, profesionales y creadores de Internet manifestamos nuestra firme oposición al proyecto, y declaramos que:</p>
 
@@ -505,8 +491,7 @@ aptitude update
                 <link>https://aj.garcialagar.es/blog/2009/12/02/manifiesto-8220en-defensa-de-los-derechos-fundamentales-en-internet8221</link>
                 <pubDate>Wed, 02 Dec 2009 12:43:59 +0000</pubDate>
                 <guid>https://aj.garcialagar.es/blog/2009/12/02/manifiesto-8220en-defensa-de-los-derechos-fundamentales-en-internet8221</guid>
-            </item>
-                    <item>
+            </item>            <item>
                 <title>Manifesto on the rights of Internet users</title>
                 <description><![CDATA[<p>A group of journalists, bloggers, professionals and creators want to express their firm opposition to the inclusion in a Draft Law of some changes to Spanish laws restricting the freedoms of expression, information and access to culture on the Internet. We also declare that:</p>
 
@@ -528,8 +513,7 @@ aptitude update
                 <link>https://aj.garcialagar.es/blog/2009/12/02/manifesto-on-the-rights-of-internet-users</link>
                 <pubDate>Wed, 02 Dec 2009 12:39:12 +0000</pubDate>
                 <guid>https://aj.garcialagar.es/blog/2009/12/02/manifesto-on-the-rights-of-internet-users</guid>
-            </item>
-                    <item>
+            </item>            <item>
                 <title>I've bought a game</title>
                 <description><![CDATA[<p>Yes, I know, this shouldn't be in the news. A lot of people buy games everyday, but this time it was different. I was able to decide the right price for the game.<img class="alignright" style="float: right;" src="http://i0.wp.com/2dboy.com/blog/wp-content/uploads/2009/10/WoG_happybday1.jpg?resize=484%2C244" alt="" data-recalc-dims="1" /></p>
 
@@ -554,8 +538,7 @@ aptitude update
                 <link>https://aj.garcialagar.es/blog/2009/10/22/ive-bought-a-game</link>
                 <pubDate>Thu, 22 Oct 2009 19:43:55 +0000</pubDate>
                 <guid>https://aj.garcialagar.es/blog/2009/10/22/ive-bought-a-game</guid>
-            </item>
-                    <item>
+            </item>            <item>
                 <title>Inglorious basterds</title>
                 <description><![CDATA[<p><img src="http://static1.squarespace.com/static/550db867e4b051bbaff5260a/553afc3ee4b0f281a4ea06f8/553afe0fe4b09e094f86db6d/1429929487543/inglourious_var.jpg?format=500w" alt="Buy this poster at tsout.com" /></p>
 
@@ -582,8 +565,7 @@ aptitude update
                 <link>https://aj.garcialagar.es/blog/2009/10/07/inglorious-basterds</link>
                 <pubDate>Wed, 07 Oct 2009 13:08:53 +0000</pubDate>
                 <guid>https://aj.garcialagar.es/blog/2009/10/07/inglorious-basterds</guid>
-            </item>
-                    <item>
+            </item>            <item>
                 <title>Dojo, JsonRestStore and transaction referencing</title>
                 <description><![CDATA[<p>Last weeks I need to work with a tree structure. Since I'm using <a href="http://framework.zend.com">Zend Framework</a>, I decided to use the <a href="http://www.dojotoolkit.org/">Dojo Toolkit</a> to make it.</p>
 
@@ -674,8 +656,7 @@ var tree = new dijit.Tree({model: model}, "treeDivId");
                 <link>https://aj.garcialagar.es/blog/2009/09/29/dojo-jsonreststore-and-transaction-referencing</link>
                 <pubDate>Tue, 29 Sep 2009 19:16:10 +0000</pubDate>
                 <guid>https://aj.garcialagar.es/blog/2009/09/29/dojo-jsonreststore-and-transaction-referencing</guid>
-            </item>
-                    <item>
+            </item>            <item>
                 <title>Clases en Arquigrafía</title>
                 <description><![CDATA[<p>Ayer terminé la primera asignatura de las dos que, junto con <a href="http://www.it.uc3m.es/vlc">Vicente Luque</a> y Pablo Palacios, voy a impartir en el <strong>III Máster en Comunicación Digital y Multimedia del Proyecto de Arquitectura</strong> de la <strong>Universidad Politécnica de Madrid</strong>. <a href="http://www.arquigrafia.es">Máster de Arquigrafía</a> para los amigos.</p>
 
@@ -694,8 +675,7 @@ var tree = new dijit.Tree({model: model}, "treeDivId");
                 <link>https://aj.garcialagar.es/blog/2009/09/23/clases-en-arquigrafia</link>
                 <pubDate>Wed, 23 Sep 2009 12:52:47 +0000</pubDate>
                 <guid>https://aj.garcialagar.es/blog/2009/09/23/clases-en-arquigrafia</guid>
-            </item>
-                    <item>
+            </item>            <item>
                 <title>My OpenID provider</title>
                 <description><![CDATA[<p>Well, I've reset my digital identity: new <a href="http://twitter.com/ajgarlag">twitter</a> and <a href="http://indenti.ca/ajgarlag">identi.ca</a> usernames, new <a href="http://last.fm/user/ajgarlag">last.fm</a> account, new <a href="http://del.icio.us/ajgarlag">del.icio.us</a> (I prefer the old domain 😊) account, etc.</p>
 
@@ -710,8 +690,7 @@ var tree = new dijit.Tree({model: model}, "treeDivId");
                 <link>https://aj.garcialagar.es/blog/2009/09/18/my-openid-provider</link>
                 <pubDate>Fri, 18 Sep 2009 21:36:01 +0000</pubDate>
                 <guid>https://aj.garcialagar.es/blog/2009/09/18/my-openid-provider</guid>
-            </item>
-                    <item>
+            </item>            <item>
                 <title>No comment</title>
                 <description><![CDATA[<p>First post, nothing more to say.</p>
 
@@ -720,6 +699,5 @@ var tree = new dijit.Tree({model: model}, "treeDivId");
                 <link>https://aj.garcialagar.es/blog/2009/09/17/no-comment</link>
                 <pubDate>Thu, 17 Sep 2009 16:34:53 +0000</pubDate>
                 <guid>https://aj.garcialagar.es/blog/2009/09/17/no-comment</guid>
-            </item>
-            </channel>
+            </item>    </channel>
 </rss>
